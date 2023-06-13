@@ -6,7 +6,7 @@ export default async function New() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-semibold">Create new post</h1>
+      <h1 className="mb-8 text-2xl font-medium">Create new post</h1>
       <PostForm userId={session?.user.id!} />
     </section>
   );
