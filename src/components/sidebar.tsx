@@ -1,19 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getServerSession } from 'next-auth/next';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getAuthSession } from '@/lib/auth';
 import { SignInButton } from './sign-in-button';
 import { SignOutButton } from './sign-out-button';
 
 export async function Sidebar() {
-  const session = await getServerSession(authOptions);
+  const session = await getAuthSession();
 
   return (
-    <aside className="fixed top-0 left-0 min-h-screen w-1/5 bg-black text-white p-8">
+    <aside className="fixed left-0 top-0 min-h-screen w-1/5 bg-black p-8 text-white">
       {session ? (
         <section>
-          <div className="flex items-center gap-2 mb-16">
+          <div className="mb-16 flex items-center gap-2">
             <Image
               src={session?.user.image!}
               width={40}
