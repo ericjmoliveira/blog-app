@@ -25,6 +25,11 @@ export async function Sidebar() {
           <nav>
             <ul className="flex flex-col gap-8 font-medium">
               <li>
+                <Link href={'/'} className="hover:underline">
+                  View posts list
+                </Link>
+              </li>
+              <li>
                 <Link href={'/posts/new'} className="hover:underline">
                   Create new post
                 </Link>
