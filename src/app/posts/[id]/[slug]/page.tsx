@@ -1,7 +1,9 @@
 import { Post } from '@/interfaces';
 
 export default async function PostPage({ params }: { params: { id: string; slug: string } }) {
-  const response = await fetch(`http://localhost:3000/api/posts/${params.id}`);
+  const response = await fetch(`http://localhost:3000/api/posts/${params.id}`, {
+    next: { revalidate: 30 }
+  });
   const data = await response.json();
   const post = data.post as Post;
 
