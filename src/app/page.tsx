@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getAuthSession } from '@/lib/auth';
 import { Post } from '@/interfaces';
 import { SignInButton } from '@/components/sign-in-button';
+import { DeletePostButton } from '@/components/delete-post-button';
 
 export default async function Home() {
   const session = await getAuthSession();
@@ -43,7 +44,7 @@ export default async function Home() {
                 <Link href={`/posts/edit/${post.id}`} className="underline">
                   Edit
                 </Link>
-                <button className="underline">Delete</button>
+                <DeletePostButton postId={post.id} />
               </td>
             </tr>
           ))}
