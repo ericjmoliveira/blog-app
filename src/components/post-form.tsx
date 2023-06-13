@@ -1,21 +1,33 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export function PostForm({ userId }: { userId: string }) {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [content, setContent] = useState('');
 
+  const router = useRouter();
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const response = await fetch('http://localhost:3000/api/posts', {
       method: 'POST',
-      body: JSON.stringify({ userId, title, subtitle, content })
+      body: JSON.stringify({ userId, title, subtitle: subtitle ? subtitle : undefined, content })
     });
 
     const data = await response.json();
+
+    if (data.error) {
+      return toast(data.error, { type: 'error', theme: 'dark' });
+    }
+
+    toast(data.message, { type: 'success', theme: 'dark' });
+
+    router.push(`/posts/${data.post.id}/${data.post.slug}`);
   };
 
   return (
