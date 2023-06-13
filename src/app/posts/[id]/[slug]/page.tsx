@@ -16,7 +16,7 @@ export default async function PostPage({ params }: { params: { id: string; slug:
             {post.subtitle && post.subtitle}
           </h2>
           <p className="text-md mb-4 font-medium text-gray-600">
-            Last update in: {new Date(post.updatedAt).toDateString()}
+            Last update in: {new Date(post.updatedAt).toLocaleString()}
           </p>
         </section>
         <section className="whitespace-break-spaces">{post.content}</section>
