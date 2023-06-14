@@ -3,6 +3,10 @@ import { getAuthSession } from '@/lib/auth';
 import { Post } from '@/interfaces';
 import { SignInButton } from '@/components/sign-in-button';
 
+export const metadata = {
+  title: 'Edit post'
+};
+
 export default async function EditPost({ params }: { params: { id: string } }) {
   const session = await getAuthSession();
 

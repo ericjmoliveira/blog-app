@@ -5,6 +5,10 @@ import { Post } from '@/interfaces';
 import { SignInButton } from '@/components/sign-in-button';
 import { DeletePostButton } from '@/components/delete-post-button';
 
+export const metadata = {
+  title: 'Posts List'
+};
+
 export default async function Home() {
   const session = await getAuthSession();
 

@@ -2,6 +2,10 @@ import { PostForm } from '@/components/post-form';
 import { SignInButton } from '@/components/sign-in-button';
 import { getAuthSession } from '@/lib/auth';
 
+export const metadata = {
+  title: 'Create new post'
+};
+
 export default async function New() {
   const session = await getAuthSession();
 

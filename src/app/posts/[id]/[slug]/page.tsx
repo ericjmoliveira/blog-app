@@ -1,4 +1,28 @@
+import { Metadata, ResolvingMetadata } from 'next';
 import { Post } from '@/interfaces';
+
+interface MetadataProps {
+  params: { id: string };
+}
+
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+  const response = await fetch(`http://localhost:3000/api/posts/${params.id}`, {
+    next: { revalidate: 30 }
+  });
+
+  const data = await response.json();
+  const post = data.post as Post;
+
+  if (!post) {
+    return {
+      title: 'Post not found'
+    };
+  }
+
+  return {
+    title: post.title
+  };
+}
 
 export default async function PostPage({ params }: { params: { id: string; slug: string } }) {
   const response = await fetch(`http://localhost:3000/api/posts/${params.id}`, {
